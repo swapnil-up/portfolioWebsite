@@ -2,6 +2,7 @@ import os
 import markdown
 from django.shortcuts import render
 from django.conf import settings
+import requests
 
 def home(request):
     return render(request, "index.html")
@@ -35,3 +36,15 @@ def blog_detail(request, slug):
         return render(request, '404.html')  
     
     return render(request, 'blog_detail.html', {'content': html_content, 'title': slug.replace('_', ' ').title()})
+
+def project(request):
+    github_username = 'swapnil-up' 
+    url = f'https://api.github.com/users/{github_username}/repos'
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        repos = response.json()  
+    else:
+        repos = []
+
+    return render(request, 'project.html', {'repos': repos})

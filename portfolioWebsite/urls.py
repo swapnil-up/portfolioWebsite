@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from blog.views import home, about, blog_list, blog_detail
+from blog.views import home, about, blog_list, blog_detail, project
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +24,5 @@ urlpatterns = [
     path("about/", about, name="about"),
     path('blog/', blog_list, name='blog_list'),  
     path('blog/<slug:slug>/', blog_detail, name='blog_detail'),
+    path('project/', project, name='project'),
 ]

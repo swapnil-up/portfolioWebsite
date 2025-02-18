@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}My Projects{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto p-8">
+        <h1 class="text-4xl font-bold text-center mb-8">My Projects</h1>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {% for repo in repos %}
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold">{{ repo.name }}</h2>
+                    <p class="mt-2">{{ repo.description|default:"No description provided" }}</p>
+                    <a href="{{ repo.html_url }}" class="text-blue-500 mt-4 inline-block" target="_blank">View on GitHub</a>
+                </div>
+            {% empty %}
+                <p>No projects found</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
